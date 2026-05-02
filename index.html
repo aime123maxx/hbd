@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday! 🎉</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Background Animation -->
+        <div class="confetti"></div>
+        
+        <!-- Header Section -->
+        <header class="header">
+            <h1 class="title">Happy Birthday! 🎂</h1>
+            <p class="subtitle">To the most amazing person</p>
+        </header>
+
+        <!-- Image Gallery Section -->
+        <section class="gallery">
+            <div class="image-frame">
+                <img src="https://via.placeholder.com/300x300?text=Your+Photo+Here" alt="Our Photo" class="main-image">
+            </div>
+            <div class="image-frame">
+                <img src="https://via.placeholder.com/300x300?text=Another+Memory" alt="Memory Photo" class="main-image">
+            </div>
+        </section>
+
+        <!-- Message Section -->
+        <section class="message-section">
+            <div class="message-box">
+                <h2>A Special Message For You</h2>
+                <p class="editable-text">Edit this message! Double-click to customize your personal birthday message for your boyfriend. Add your heartfelt wishes, special memories, and inside jokes here!</p>
+                <p class="editable-text">This day is extra special because you're in it. Wishing you all the happiness, laughter, and love you deserve! 💕</p>
+            </div>
+        </section>
+
+        <!-- Interactive Links Section -->
+        <section class="links-section">
+            <h2>Click for Surprises! 🎁</h2>
+            <div class="links-grid">
+                <a href="#" class="fun-link link-1" onclick="showSurprise(event, 'music')">
+                    <span class="emoji">🎵</span>
+                    <span class="text">Play Music</span>
+                </a>
+                <a href="#" class="fun-link link-2" onclick="showSurprise(event, 'joke')">
+                    <span class="emoji">😄</span>
+                    <span class="text">Tell a Joke</span>
+                </a>
+                <a href="#" class="fun-link link-3" onclick="showSurprise(event, 'memory')">
+                    <span class="emoji">💭</span>
+                    <span class="text">Favorite Memory</span>
+                </a>
+                <a href="#" class="fun-link link-4" onclick="showSurprise(event, 'love')">
+                    <span class="emoji">💖</span>
+                    <span class="text">Why I Love You</span>
+                </a>
+                <a href="#" class="fun-link link-5" onclick="showSurprise(event, 'song')">
+                    <span class="emoji">🎤</span>
+                    <span class="text">Our Song</span>
+                </a>
+                <a href="#" class="fun-link link-6" onclick="showSurprise(event, 'countdown')">
+                    <span class="emoji">⏰</span>
+                    <span class="text">Time Together</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Surprise Modal -->
+        <div id="surpriseModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h3 id="surpriseTitle"></h3>
+                <p id="surpriseText"></p>
+            </div>
+        </div>
+
+        <!-- Floating Hearts -->
+        <div class="hearts"></div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Made with 💕 for your special day</p>
+            <p class="year"><span class="editable-text">2026</span> - A year to celebrate you!</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
