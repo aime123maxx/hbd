@@ -3,71 +3,399 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday! 🎉</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Happy Birthday, My Love! 🎉</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 40px;
+            max-width: 900px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #667eea;
+            margin-bottom: 10px;
+            animation: bounce 1s ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            color: #764ba2;
+            margin-bottom: 30px;
+        }
+
+        /* PHOTO SLIDER */
+        .slider {
+            position: relative;
+            max-width: 500px;
+            height: 400px;
+            margin: 30px auto;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .slides {
+            display: flex;
+            height: 100%;
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .slides img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .slider-controls {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid white;
+        }
+
+        .dot.active {
+            background: white;
+            transform: scale(1.3);
+        }
+
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(102, 126, 234, 0.9);
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            z-index: 5;
+        }
+
+        .prev:hover, .next:hover {
+            background: #667eea;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .prev { left: 15px; }
+        .next { right: 15px; }
+
+        /* MESSAGE SECTION */
+        .message {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+            border-left: 5px solid #667eea;
+        }
+
+        .message h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+
+        .message p {
+            color: #333;
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        /* BUTTONS SECTION */
+        .buttons-section {
+            margin: 40px 0;
+        }
+
+        .buttons-section h2 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+        }
+
+        .buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 15px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn:active {
+            transform: translateY(-2px);
+        }
+
+        .emoji {
+            font-size: 1.8em;
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideDown 0.3s ease;
+            position: relative;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 35px;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: #667eea;
+        }
+
+        .modal-content h3 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .modal-content p {
+            color: #333;
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        /* CONFETTI */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        /* FLOATING HEARTS */
+        .hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 30px;
+            animation: floatUp 3s ease-out forwards;
+            opacity: 0.8;
+        }
+
+        @keyframes floatUp {
+            0% {
+                bottom: -50px;
+                opacity: 1;
+            }
+            100% {
+                bottom: 100vh;
+                opacity: 0;
+            }
+        }
+
+        footer {
+            margin-top: 40px;
+            color: #764ba2;
+            font-size: 0.95em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .buttons-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .slider {
+                height: 300px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="hearts-container" id="heartsContainer"></div>
+    
     <div class="container">
-        <!-- Background Animation -->
-        <div class="confetti"></div>
-        
-        <!-- Header Section -->
-        <header class="header">
-            <h1 class="title">Happy Birthday! 🎂</h1>
-            <p class="subtitle">To the most amazing person</p>
-        </header>
+        <h1>🎂 Happy Birthday! 🎂</h1>
+        <p class="subtitle">To my most amazing person ❤️</p>
 
-        <!-- Image Gallery Section -->
-        <section class="gallery">
-            <div class="image-frame">
-                <img src="https://via.placeholder.com/300x300?text=Your+Photo+Here" alt="Our Photo" class="main-image">
+        <!-- PHOTO SLIDER -->
+        <div class="slider">
+            <div class="slides" id="slides">
+                <img src="photo1.jpg" alt="Memory 1">
+                <img src="photo2.jpg" alt="Memory 2">
+                <img src="photo3.jpg" alt="Memory 3">
+                <img src="photo4.jpg" alt="Memory 4">
             </div>
-            <div class="image-frame">
-                <img src="https://via.placeholder.com/300x300?text=Another+Memory" alt="Memory Photo" class="main-image">
-            </div>
-        </section>
 
-        <!-- Message Section -->
-        <section class="message-section">
-            <div class="message-box">
-                <h2>A Special Message For You</h2>
-                <p class="editable-text">Edit this message! Double-click to customize your personal birthday message for your boyfriend. Add your heartfelt wishes, special memories, and inside jokes here!</p>
-                <p class="editable-text">This day is extra special because you're in it. Wishing you all the happiness, laughter, and love you deserve! 💕</p>
-            </div>
-        </section>
+            <button class="prev" onclick="moveSlide(-1)">❮</button>
+            <button class="next" onclick="moveSlide(1)">❯</button>
 
-        <!-- Interactive Links Section -->
-        <section class="links-section">
-            <h2>Click for Surprises! 🎁</h2>
-            <div class="links-grid">
-                <a href="#" class="fun-link link-1" onclick="showSurprise(event, 'music')">
+            <div class="slider-controls" id="dotsContainer"></div>
+        </div>
+
+        <!-- MESSAGE -->
+        <div class="message">
+            <h2>💌 A Special Message For You 💌</h2>
+            <p>You make my world brighter every single day. I'm so grateful for you, and I hope this little page makes you smile as much as you make me smile.</p>
+            <p>This day is extra special because you're in it. Wishing you all the happiness, laughter, and love you deserve! 💕</p>
+        </div>
+
+        <!-- BUTTONS -->
+        <div class="buttons-section">
+            <h2>🎁 Click for Surprises! 🎁</h2>
+            <div class="buttons-grid">
+                <button class="btn" onclick="showSurprise('music')">
                     <span class="emoji">🎵</span>
-                    <span class="text">Play Music</span>
-                </a>
-                <a href="#" class="fun-link link-2" onclick="showSurprise(event, 'joke')">
+                    <span>Play Music</span>
+                </button>
+                <button class="btn" onclick="showSurprise('joke')">
                     <span class="emoji">😄</span>
-                    <span class="text">Tell a Joke</span>
-                </a>
-                <a href="#" class="fun-link link-3" onclick="showSurprise(event, 'memory')">
+                    <span>Tell a Joke</span>
+                </button>
+                <button class="btn" onclick="showSurprise('memory')">
                     <span class="emoji">💭</span>
-                    <span class="text">Favorite Memory</span>
-                </a>
-                <a href="#" class="fun-link link-4" onclick="showSurprise(event, 'love')">
+                    <span>Favorite Memory</span>
+                </button>
+                <button class="btn" onclick="showSurprise('love')">
                     <span class="emoji">💖</span>
-                    <span class="text">Why I Love You</span>
-                </a>
-                <a href="#" class="fun-link link-5" onclick="showSurprise(event, 'song')">
+                    <span>Why I Love You</span>
+                </button>
+                <button class="btn" onclick="showSurprise('song')">
                     <span class="emoji">🎤</span>
-                    <span class="text">Our Song</span>
-                </a>
-                <a href="#" class="fun-link link-6" onclick="showSurprise(event, 'countdown')">
+                    <span>Our Song</span>
+                </button>
+                <button class="btn" onclick="showSurprise('countdown')">
                     <span class="emoji">⏰</span>
-                    <span class="text">Time Together</span>
-                </a>
+                    <span>Time Together</span>
+                </button>
             </div>
-        </section>
+        </div>
 
-        <!-- Surprise Modal -->
+        <!-- MODAL -->
         <div id="surpriseModal" class="modal">
             <div class="modal-content">
                 <span class="close" onclick="closeModal()">&times;</span>
@@ -76,16 +404,162 @@
             </div>
         </div>
 
-        <!-- Floating Hearts -->
-        <div class="hearts"></div>
-
-        <!-- Footer -->
-        <footer class="footer">
+        <footer>
             <p>Made with 💕 for your special day</p>
-            <p class="year"><span class="editable-text">2026</span> - A year to celebrate you!</p>
+            <p>2026 - A year to celebrate YOU!</p>
         </footer>
     </div>
 
-    <script src="script.js"></script>
+    <audio id="music" src="ratherbe.mp3" preload="auto"></audio>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.getElementById('slides');
+        const totalSlides = slides.children.length;
+
+        // Create dots
+        const dotsContainer = document.getElementById('dotsContainer');
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'dot' + (i === 0 ? ' active' : '');
+            dot.onclick = () => goToSlide(i);
+            dotsContainer.appendChild(dot);
+        }
+
+        function moveSlide(step) {
+            currentSlide = (currentSlide + step + totalSlides) % totalSlides;
+            updateSlider();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlider();
+        }
+
+        function updateSlider() {
+            slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update dots
+            document.querySelectorAll('.dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlide);
+            });
+        }
+
+        // Auto-slide every 5 seconds
+        setInterval(() => moveSlide(1), 5000);
+
+        const surprises = {
+            music: {
+                title: '🎵 Our Song 🎵',
+                text: 'I hope this song reminds you of our special moments together. Every time I hear it, I think of you and smile. Happy Birthday, my love! 💕'
+            },
+            joke: {
+                title: '😄 A Little Laugh 😄',
+                text: 'Why did the birthday cake go to the doctor? Because it was feeling crumbly! 🎂 But seriously, you deserve a day filled with lots of laughter and joy!'
+            },
+            memory: {
+                title: '💭 Our Favorite Memory 💭',
+                text: 'One of my favorite memories with you is when we laughed until we couldn\'t breathe. You make every moment special and unforgettable. Thank you for being amazing! 💖'
+            },
+            love: {
+                title: '💖 Why I Love You 💖',
+                text: 'I love you because you\'re kind, funny, and make me feel like the luckiest person alive. You light up my world every single day. Happy Birthday to the love of my life! 💕'
+            },
+            song: {
+                title: '🎤 Our Song is Playing 🎤',
+                text: 'This is our song! Every note reminds me of you. Dance with me in your heart and know that I\'m celebrating this special day with you no matter where I am. I love you! 💕'
+            },
+            countdown: {
+                title: '⏰ Time Together ⏰',
+                text: 'Every moment with you is a treasure. I can\'t wait to spend many more birthdays celebrating you. You mean the world to me. Happy Birthday! 🎉💕'
+            }
+        };
+
+        function showSurprise(type) {
+            const surprise = surprises[type];
+            document.getElementById('surpriseTitle').textContent = surprise.title;
+            document.getElementById('surpriseText').textContent = surprise.text;
+            document.getElementById('surpriseModal').style.display = 'block';
+
+            // Play music if music button clicked
+            if (type === 'music' || type === 'song') {
+                const audio = document.getElementById('music');
+                audio.play().catch(e => console.log('Audio play prevented'));
+            }
+
+            // Create confetti
+            createConfetti();
+            createHearts();
+        }
+
+        function closeModal() {
+            document.getElementById('surpriseModal').style.display = 'none';
+            const audio = document.getElementById('music');
+            audio.pause();
+        }
+
+        function createConfetti() {
+            const colors = ['#667eea', '#764ba2', '#f093fb', '#4facfe', '#ff6b9d'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animation = `fall ${2 + Math.random() * 1}s linear`;
+                document.body.appendChild(confetti);
+
+                setTimeout(() => confetti.remove(), 3000);
+            }
+        }
+
+        function createHearts() {
+            const hearts = ['❤️', '💕', '💖', '💗', '💝'];
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (2 + Math.random() * 2) + 's';
+                document.getElementById('heartsContainer').appendChild(heart);
+
+                setTimeout(() => heart.remove(), 4000);
+            }
+        }
+
+        // Continuously create floating hearts
+        setInterval(() => {
+            const hearts = ['❤️', '💕', '💖', '💗', '💝'];
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (3 + Math.random() * 2) + 's';
+            heart.style.opacity = '0.5';
+            document.getElementById('heartsContainer').appendChild(heart);
+
+            setTimeout(() => heart.remove(), 5000);
+        }, 800);
+
+        // CSS animation for confetti
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fall {
+                to {
+                    transform: translateY(100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('surpriseModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+                document.getElementById('music').pause();
+            }
+        }
+    </script>
 </body>
 </html>
