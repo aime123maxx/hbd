@@ -85,6 +85,29 @@
             object-fit: cover;
             flex-shrink: 0;
         }
+        .slide {
+    position: relative;
+    min-width: 100%;
+    height: 100%;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.photo-message {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+}
 
         .slider-controls {
             position: absolute;
@@ -342,20 +365,40 @@
         <h1>🎂 Happy Birthday, My love! 🎂</h1>
         <p class="subtitle">To my most amazing person ❤️</p>
 
-        <!-- PHOTO SLIDER -->
-        <div class="slider">
-            <div class="slides" id="slides">
-                <img src="photo1.jpg" alt="Memory 1">
-                <img src="photo2.jpg" alt="Memory 2">
-                <img src="photo3.jpg" alt="Memory 3">
-                <img src="photo4.jpg" alt="Memory 4">
-            </div>
+<!-- PHOTO SLIDER -->
+<div class="slider">
+    <div class="slides" id="slides">
 
-            <button class="prev" onclick="moveSlide(-1)">❮</button>
-            <button class="next" onclick="moveSlide(1)">❯</button>
-
-            <div class="slider-controls" id="dotsContainer"></div>
+        <div class="slide">
+            <img src="photo1.jpg" alt="Memory 1">
+            <div class="photo-message">Our picture together 💕</div>
         </div>
+
+        <div class="slide">
+            <img src="photo2.jpg" alt="Memory 2">
+            <div class="photo-message">Every moment with you feels special ✨</div>
+        </div>
+
+        <div class="slide">
+            <img src="photo3.jpg" alt="Memory 3">
+            <div class="photo-message">Thank you for making me smile everyday 😊</div>
+        </div>
+
+        <div class="slide">
+            <img src="photo4.jpg" alt="Memory 4">
+            <div class="photo-message">Happy Birthday to my favorite person 🎂❤️</div>
+        </div>
+
+    </div>
+
+    <button class="prev" onclick="moveSlide(-1)">❮</button>
+    <button class="next" onclick="moveSlide(1)">❯</button>
+
+    <div class="slider-controls" id="dotsContainer"></div>
+</div>
+
+        
+        
 
         <!-- MESSAGE -->
         <div class="message">
@@ -407,7 +450,7 @@
     <script>
         let currentSlide = 0;
         const slides = document.getElementById('slides');
-        const totalSlides = slides.children.length;
+        const totalSlides = document.querySelectorAll('.slide').length;
 
         // Create dots
         const dotsContainer = document.getElementById('dotsContainer');
