@@ -220,6 +220,35 @@
     font-size: 1.1em;
 }
 
+        /* CAT GIFS */
+.cat-gif {
+    position: absolute;
+    width: 90px;
+    pointer-events: none;
+    animation: floatCat 3s ease-in-out infinite;
+}
+
+.cat1 {
+    top: -10px;
+    left: -10px;
+    transform: rotate(-8deg);
+}
+
+.cat2 {
+    bottom: -10px;
+    right: -10px;
+    transform: rotate(8deg);
+}
+
+@keyframes floatCat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
         /* BUTTONS SECTION */
         .buttons-section {
             margin: 40px 0;
@@ -448,9 +477,16 @@
 
 <!-- LOVE LETTER -->
 <div class="love-letter" onclick="openLetter()">
+
+<img src="cat1.gif" class="cat-gif cat1">
+<img src="cat2.gif" class="cat-gif cat2">
+
     <div class="letter-icon">💌</div>
-    <h2>A Special Message For You</h2>
+
+    <h2>💙 A Special Message For You 💙</h2>
     <p>Click to open my love letter ❤️</p>
+
+    <div class="sparkles">✨ 💖 ✨</div>
 </div>
            
 
@@ -491,6 +527,8 @@
         <span class="close" onclick="closeLetter()">&times;</span>
 
         <h3>💌 To My Love 💌</h3>
+        <img src="cat3.gif"
+     style="width:120px; margin-bottom:15px; border-radius:20px;">
 
         <p>
             Happiest Birthday❤️ <br><br>
