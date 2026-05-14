@@ -179,6 +179,47 @@
             margin-bottom: 10px;
         }
 
+        /* LOVE LETTER */
+.love-letter {
+    background: linear-gradient(135deg, #a9c4e2 50%, #a2bffe 100%);
+    padding: 35px;
+    border-radius: 25px;
+    margin: 30px 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.love-letter:hover {
+    transform: scale(1.03);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+}
+
+.letter-icon {
+    font-size: 4em;
+    margin-bottom: 10px;
+    animation: floatLetter 2s infinite ease-in-out;
+}
+
+@keyframes floatLetter {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.love-letter h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.love-letter p {
+    font-size: 1.1em;
+}
+
         /* BUTTONS SECTION */
         .buttons-section {
             margin: 40px 0;
@@ -405,13 +446,13 @@
         
         
 
-        <!-- MESSAGE -->
-        <div class="message">
-            <h2>💌 A Special Message For You 💌</h2>
-            <p>I want you to know that I believe in you so much. I know you know what you’re doing, and I trust the path you’re taking. Whatever you want to pursue, I’ll always support you in every situation and every decision you make.</p>
-            <p>I know you’re capable of achieving the things you dream about, and even if things don’t always go the way you planned, that’s okay. Failures don’t define you — they’re just part of the journey toward something greater. There will always be more opportunities waiting for you.</p>
-            <p> No matter how many setbacks come your way, I’ll always have your back and remind you to keep moving forward. Every ‘no’ is only bringing you closer to the right ‘yes.’ And through it all, I’ll be here cheering for you, believing in you, and loving you every step of the way.</p>
-        </div>
+<!-- LOVE LETTER -->
+<div class="love-letter" onclick="openLetter()">
+    <div class="letter-icon">💌</div>
+    <h2>A Special Message For You</h2>
+    <p>Click to open my love letter ❤️</p>
+</div>
+           
 
         <!-- BUTTONS -->
         <div class="buttons-section">
@@ -444,7 +485,25 @@
                 <p id="surpriseText"></p>
             </div>
         </div>
+<!-- LOVE LETTER MODAL -->
+<div id="letterModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeLetter()">&times;</span>
 
+        <h3>💌 To My Love 💌</h3>
+
+        <p>
+            Happy Birthday, my love ❤️ <br><br>
+
+ <p>I want you to know that I believe in you so much. I know you know what you’re doing, and I trust the path you’re taking. Whatever you want to pursue, I’ll always support you in every situation and every decision you make.</p>
+            <p>I know you’re capable of achieving the things you dream about, and even if things don’t always go the way you planned, that’s okay. Failures don’t define you — they’re just part of the journey toward something greater. There will always be more opportunities waiting for you.</p>
+            <p> No matter how many setbacks come your way, I’ll always have your back and remind you to keep moving forward. Every ‘no’ is only bringing you closer to the right ‘yes.’ And through it all, I’ll be here cheering for you, believing in you, and loving you every step of the way.</p>
+            <br><br>
+
+            I love you endlessly. Happy Birthday again, my love! 🎂💕
+        </p>
+    </div>
+</div>
         <footer>
             <p>Made with 💕 for your special day</p>
             <p>2026 - A year to celebrate YOU!</p>
@@ -485,6 +544,16 @@
                 dot.classList.toggle('active', i === currentSlide);
             });
         }
+
+        function openLetter() {
+    document.getElementById('letterModal').style.display = 'block';
+    createConfetti();
+    createHearts();
+}
+
+function closeLetter() {
+    document.getElementById('letterModal').style.display = 'none';
+}
 
         // Auto-slide every 5 seconds
         setInterval(() => moveSlide(1), 5000);
