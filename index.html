@@ -656,7 +656,7 @@ function createHearts(){
 
 const hearts=['💖','💕','❤️','💗','💘','💞'];
 
-for(let i=0;i<35;i++){
+for(let i=0;i<40;i++){
 
 const heart=document.createElement('div');
 
@@ -665,24 +665,45 @@ heart.className='heart';
 heart.textContent=
 hearts[Math.floor(Math.random()*hearts.length)];
 
-heart.style.left=Math.random()*100+'%';
-heart.style.top=Math.random()*100+'%';
+/* START FROM CENTER */
+
+heart.style.left='50%';
+heart.style.top='55%';
+
+/* RANDOM SIZE */
 
 heart.style.fontSize=
 (Math.random()*25+20)+'px';
 
-heart.style.setProperty(
-'--x',
-(Math.random()-0.5)*600
-);
+/* RANDOM X + Y DIRECTION */
 
-heart.style.animation=
-`floatHeart ${Math.random()*3+4}s linear forwards`;
+const randomX=(Math.random()-0.5)*1200;
+const randomY=(Math.random()-0.5)*800;
+
+heart.animate([
+
+{
+transform:'translate(0,0) scale(0.5)',
+opacity:1
+},
+
+{
+transform:`translate(${randomX}px, ${randomY}px) scale(1.8) rotate(720deg)`,
+opacity:0
+}
+
+],{
+
+duration:Math.random()*3000+3000,
+easing:'ease-out',
+fill:'forwards'
+
+});
 
 document.getElementById('heartsContainer')
 .appendChild(heart);
 
-setTimeout(()=>heart.remove(),7000);
+setTimeout(()=>heart.remove(),6000);
 
 }
 
