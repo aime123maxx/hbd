@@ -662,30 +662,50 @@ setTimeout(()=>heart.remove(),4000);
 
 function createConfetti(){
 
-for(let i=0;i<80;i++){
+for(let i=0;i<120;i++){
 
 const confetti=document.createElement('div');
 
 confetti.style.position='fixed';
-confetti.style.width='10px';
-confetti.style.height='10px';
+confetti.style.width=Math.random()*8+6+'px';
+confetti.style.height=Math.random()*8+6+'px';
 confetti.style.background=`hsl(${Math.random()*360},100%,70%)`;
+
 confetti.style.left=Math.random()*100+'%';
-confetti.style.top='-10px';
-confetti.style.borderRadius='50%';
+confetti.style.top='-20px';
+
+confetti.style.borderRadius=Math.random()>0.5?'50%':'0%';
 confetti.style.zIndex='9999';
+confetti.style.pointerEvents='none';
 
 document.body.appendChild(confetti);
 
+/* RANDOM MOVEMENT */
+
+const randomX=(Math.random()-0.5)*600;
+const randomRotate=Math.random()*1440;
+
 confetti.animate([
-{transform:'translateY(0px) rotate(0deg)'},
-{transform:`translateY(${window.innerHeight}px) rotate(720deg)`}
+
+{
+transform:'translate(0,0) rotate(0deg)',
+opacity:1
+},
+
+{
+transform:`translate(${randomX}px, ${window.innerHeight+200}px) rotate(${randomRotate}deg)`,
+opacity:0.8
+}
+
 ],{
-duration:3000,
-easing:'linear'
+
+duration:Math.random()*2000+3000,
+easing:'cubic-bezier(0.1,0.8,0.9,1)',
+fill:'forwards'
+
 });
 
-setTimeout(()=>confetti.remove(),3000);
+setTimeout(()=>confetti.remove(),5000);
 
 }
 
