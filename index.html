@@ -678,21 +678,35 @@ createHearts();
 
 function createHearts(){
 
-const hearts=['💖','💕','❤️','💗'];
+const hearts=['💖','💕','❤️','💗','💘','💞'];
 
-for(let i=0;i<20;i++){
+for(let i=0;i<35;i++){
 
 const heart=document.createElement('div');
 
 heart.className='heart';
 
-heart.textContent=hearts[Math.floor(Math.random()*hearts.length)];
+heart.textContent=
+hearts[Math.floor(Math.random()*hearts.length)];
 
 heart.style.left=Math.random()*100+'%';
+heart.style.top=Math.random()*100+'%';
 
-document.getElementById('heartsContainer').appendChild(heart);
+heart.style.fontSize=
+(Math.random()*25+20)+'px';
 
-setTimeout(()=>heart.remove(),4000);
+heart.style.setProperty(
+'--x',
+(Math.random()-0.5)*600
+);
+
+heart.style.animation=
+`floatHeart ${Math.random()*3+4}s linear forwards`;
+
+document.getElementById('heartsContainer')
+.appendChild(heart);
+
+setTimeout(()=>heart.remove(),7000);
 
 }
 
