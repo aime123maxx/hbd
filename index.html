@@ -492,6 +492,7 @@ NO 😭
 </div>
 
 </div>
+    <audio id="ourSong" src="ratherbe.mp3"></audio>
 
 <script>
 
@@ -590,6 +591,14 @@ document.getElementById('letterModal').style.display='block';
 document.getElementById('modalTitle').innerHTML=surprise.title;
 
 document.getElementById('modalText').innerHTML=surprise.text;
+
+if(type === 'song'){
+
+const song = document.getElementById('ourSong');
+
+song.play();
+
+}
 
 createConfetti();
 createHearts();
